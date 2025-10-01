@@ -1,0 +1,308 @@
+annotations: []
+smart_annotations: []
+nodes:
+  - boot_disk_size: null
+    configuration: []
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n0
+    image_definition: cat8000v-17-15-03a
+    label: CAT8000V-CGN
+    node_definition: cat8000v
+    parameters: {}
+    ram: null
+    tags: []
+    x: -240
+    y: -160
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: GigabitEthernet1
+        mac_address: null
+        slot: 0
+        type: physical
+      - id: i2
+        label: GigabitEthernet2
+        mac_address: null
+        slot: 1
+        type: physical
+      - id: i3
+        label: GigabitEthernet3
+        mac_address: null
+        slot: 2
+        type: physical
+      - id: i4
+        label: GigabitEthernet4
+        mac_address: null
+        slot: 3
+        type: physical
+  - boot_disk_size: null
+    configuration: []
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n1
+    image_definition: iosxrv9000-7-11-2
+    label: XR9kv-PE
+    node_definition: iosxrv9000
+    parameters: {}
+    ram: null
+    tags: []
+    x: -240
+    y: 0
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: MgmtEth0/RP0/CPU0/0
+        mac_address: null
+        slot: 0
+        type: physical
+      - id: i2
+        label: donotuse1
+        mac_address: null
+        slot: 1
+        type: physical
+      - id: i3
+        label: donotuse2
+        mac_address: null
+        slot: 2
+        type: physical
+      - id: i4
+        label: GigabitEthernet0/0/0/0
+        mac_address: null
+        slot: 3
+        type: physical
+      - id: i5
+        label: GigabitEthernet0/0/0/1
+        mac_address: null
+        slot: 4
+        type: physical
+      - id: i6
+        label: GigabitEthernet0/0/0/2
+        mac_address: null
+        slot: 5
+        type: physical
+      - id: i7
+        label: GigabitEthernet0/0/0/3
+        mac_address: null
+        slot: 6
+        type: physical
+      - id: i8
+        label: GigabitEthernet0/0/0/4
+        mac_address: null
+        slot: 7
+        type: physical
+  - boot_disk_size: null
+    configuration: []
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n2
+    image_definition: null
+    label: IOSV-IGW
+    node_definition: iosv
+    parameters: {}
+    ram: null
+    tags: []
+    x: 80
+    y: 0
+    interfaces:
+      - id: i0
+        label: Loopback0
+        mac_address: null
+        type: loopback
+      - id: i1
+        label: GigabitEthernet0/0
+        mac_address: null
+        slot: 0
+        type: physical
+      - id: i2
+        label: GigabitEthernet0/1
+        mac_address: null
+        slot: 1
+        type: physical
+      - id: i3
+        label: GigabitEthernet0/2
+        mac_address: null
+        slot: 2
+        type: physical
+      - id: i4
+        label: GigabitEthernet0/3
+        mac_address: null
+        slot: 3
+        type: physical
+  - boot_disk_size: null
+    configuration: []
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n3
+    image_definition: null
+    label: alpine-Cliente
+    node_definition: alpine
+    parameters: {}
+    ram: null
+    tags: []
+    x: -480
+    y: 0
+    interfaces:
+      - id: i0
+        label: eth0
+        mac_address: null
+        slot: 0
+        type: physical
+  - boot_disk_size: null
+    configuration:
+      - name: default
+        content: bridge1
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n4
+    image_definition: null
+    label: ext-conn-0
+    node_definition: external_connector
+    parameters: {}
+    ram: null
+    tags: []
+    x: -800
+    y: -40
+    interfaces:
+      - id: i0
+        label: port
+        mac_address: null
+        slot: 0
+        type: physical
+  - boot_disk_size: null
+    configuration: []
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n5
+    image_definition: null
+    label: trex-0
+    node_definition: trex
+    parameters: {}
+    ram: null
+    tags: []
+    x: -800
+    y: 120
+    interfaces:
+      - id: i0
+        label: eth0
+        mac_address: null
+        slot: 0
+        type: physical
+      - id: i1
+        label: eth1
+        mac_address: null
+        slot: 1
+        type: physical
+  - boot_disk_size: null
+    configuration: []
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n6
+    image_definition: null
+    label: alpine-Server
+    node_definition: alpine
+    parameters: {}
+    ram: null
+    tags: []
+    x: 80
+    y: -160
+    interfaces:
+      - id: i0
+        label: eth0
+        mac_address: null
+        slot: 0
+        type: physical
+  - boot_disk_size: null
+    configuration: []
+    cpu_limit: null
+    cpus: null
+    data_volume: null
+    hide_links: false
+    id: n7
+    image_definition: null
+    label: Win10-0
+    node_definition: Windows10
+    parameters: {}
+    ram: null
+    tags: []
+    x: 200
+    y: -160
+    interfaces:
+      - id: i0
+        label: eth0
+        mac_address: null
+        slot: 0
+        type: physical
+      - id: i1
+        label: eth1
+        mac_address: null
+        slot: 1
+        type: physical
+links:
+  - id: l0
+    n1: n0
+    n2: n1
+    i1: i1
+    i2: i5
+    conditioning: {}
+    label: CAT8000V-CGN-GigabitEthernet1<->XR9kv-PE-GigabitEthernet0/0/0/1
+  - id: l1
+    n1: n1
+    n2: n2
+    i1: i7
+    i2: i4
+    conditioning: {}
+    label: XR9kv-PE-GigabitEthernet0/0/0/3<->IOSV-IGW-GigabitEthernet0/3
+  - id: l2
+    n1: n5
+    n2: n4
+    i1: i0
+    i2: i0
+    conditioning: {}
+    label: trex-0-eth0<->ext-conn-0-port
+  - id: l3
+    n1: n3
+    n2: n1
+    i1: i0
+    i2: i4
+    conditioning: {}
+    label: alpine-0-eth0<->XR9kv-PE-GigabitEthernet0/0/0/0
+  - id: l4
+    n1: n6
+    n2: n2
+    i1: i0
+    i2: i2
+    conditioning: {}
+    label: alpine-1-eth0<->IOSV-IGW-GigabitEthernet0/1
+  - id: l5
+    n1: n0
+    n2: n1
+    i1: i2
+    i2: i6
+    conditioning: {}
+    label: CAT8000V-CGN-GigabitEthernet2<->XR9kv-PE-GigabitEthernet0/0/0/2
+lab:
+  description: ''
+  notes: ''
+  title: Lab at Mon 18:50 PM
+  version: 0.3.0
