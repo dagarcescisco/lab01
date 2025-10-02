@@ -1,0 +1,78 @@
+## Grafana Syslog Dashboard
+https://grafana.com/grafana/dashboards/12433-syslog/
+
+## Captura Netflow
+root@ubuntu:~/Downloads# nfcapd -S 2 -w -M /var/log/netflows -p 9996
+
+## Leer captura Netflow
+root@ubuntu:~/Downloads# nfdump -f /var/log/netflows/198-18-134-99/2025/10/02/04/nfcapd.202510020440 
+File '/var/log/netflows/198-18-134-99/2025/10/02/04/nfcapd.202510020440' line 1: syntax error at '
+                                                                                                  '
+root@ubuntu:~/Downloads# nfdump -r /var/log/netflows/198-18-134-99/2025/10/02/04/nfcapd.202510020440 
+Date first seen          Event  XEvent Proto      Src IP Addr:Port          Dst IP Addr:Port     X-Src IP Addr:Port        X-Dst IP Addr:Port   In Byte Out Byte
+2025-10-02 04:40:54.808 CREATE  Ignore ICMP        10.0.10.11:0     ->          0.0.0.0:0.0         200.0.0.10:15    ->          0.0.0.0:0            0        0
+2025-10-02 04:41:54.693 DELETE  Ignore ICMP        10.0.10.11:0     ->          0.0.0.0:0.0         200.0.0.10:14    ->          0.0.0.0:0            0        0
+Summary: total flows: 2, total bytes: 0, total packets: 0, avg bps: 0, avg pps: 0, avg bpp: 0
+Time window: Time Window unknown
+Total flows processed: 2, Blocks skipped: 0, Bytes read: 356
+Sys: 0.001s flows/second: 1533.7     Wall: 0.000s flows/second: 21739.1   
+root@ubuntu:~/Downloads# 
+
+## Configuración de rsyslog
+root@ubuntu:/opt/tig# cat /etc/rsyslog.conf
+$WorkDirectory /var/spool/rsyslog  
+$ActionQueueType LinkedList  
+$ActionQueueFileName srvrfwd  
+$ActionResumeRetryCount -1  
+$ActionQueueSaveOnShutdown on  
+
+$ModLoad imudp #loads the udp module  
+$UDPServerAddress 198.18.134.28 
+$UDPServerRun 514 
+
+*.* @@(o)198.18.134.28:6514;RSYSLOG_SyslogProtocol23Format
+
+
+
+
+## Telemetry Stack
+git clone https://github.com/mikemikhail/Telemetry-ML /otp/tig
+
+
+## Plugins Telegraf
+[[inputs.cisco_telemetry_mdt]]
+ transport = "tcp"
+ service_address = ":50002"
+[[inputs.cisco_telemetry_mdt]]
+ transport = "grpc"
+ service_address = ":50001"
+[[inputs.netflow]]
+ protocol = "netflow v9"
+ service_address = "udp://:9996"
+[[inputs.syslog]]
+ server = "tcp://:6514"
+ best_effort = true
+ #syslog_standard = "RFC3164"
+ keep_alive_period = "5s"
+
+## Mod docker-compose telegraf
+  telegraf:
+    image: telegraf:1.36.2
+    container_name: telegraf
+    ports:
+      - "50001:50001"
+      - "50002:50002"
+      - "9996:9996/udp"
+        #- "514:514/udp"
+      - "6514:6514"
+    volumes:
+      - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+
+    depends_on:
+      - influxdb
+    links:
+      - influxdb
+
+    restart: always
+
+
